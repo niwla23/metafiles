@@ -2,7 +2,7 @@ test-go:
     stage: test
     image: golang:1.14
     script:
-        - go test ./main.go
+        - go test ./...
 
 docker-build-master:
   # Official docker image.
