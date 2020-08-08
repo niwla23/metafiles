@@ -2,5 +2,8 @@ version: '3'
 services:
   bot:
     build: .
-    env_file: .env
     restart: always
+    environment:
+      - TOKEN=yourtokenhere
+    volumes:
+      - ./data:/usr/src/app/data:ro
