@@ -1,0 +1,64 @@
+image: python:latest
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+cache:
+  paths:
+    - .cache/pip
+    - venv/
+
+stages:
+  - test
+  - build
+  - deploy
+
+before_script:
+  - python -V
+  - pip install virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
+
+unittests:
+  stage: test
+  script:
+    - python setup.py test
+
+tox:
+  stage: test
+  script:
+    - pip install pycodestyle
+    - pycodestyle fff_profile_picture/__init__.py
+
+run:
+  stage: build
+  script:
+    - python setup.py bdist_wheel
+    # an alternative approach is to install and run:
+    - pip install dist/*
+    # run the command here
+  artifacts:
+    paths:
+      - dist/*.whl
+
+pages:
+  stage: build
+  script:
+    - pip install sphinx sphinx-rtd-theme
+    - cd doc
+    - sphinx-build -b html . ../public
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
+
+pypi:
+  stage: deploy
+  script:
+  - pip install twine
+  - python setup.py sdist
+  - twine upload dist/* --non-interactive -u $pypi_user -p $pypi_password
+  only:
+  - master
+
