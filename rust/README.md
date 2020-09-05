@@ -17,7 +17,7 @@
 ## Usage
 ```bash
 $ {{title}} [{{param1}}]
-adoloimi
+{{output}}
 ```
 ### Parameters
 * {{param1}}: {{param1desc}}
