@@ -3,4 +3,4 @@ test:
   script:
     - wget -O cicheck https://dl.bintray.com/orobardet/gitlab-ci-linter/v2.2.0/gitlab-ci-linter.linux-amd64
     - chmod +x cicheck
-    - ./cicheck go
+    - for dir in */; do; ./cicheck dir; done
