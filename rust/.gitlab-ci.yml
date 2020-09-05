@@ -1,5 +1,5 @@
 image: "rust:latest"
-
+fdsfsafaf".dsa
 test:
    script:
         - rustc --version && cargo --version
