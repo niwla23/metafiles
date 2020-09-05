@@ -1,0 +1,5 @@
+test:
+  stage: test
+  script:
+    - wget -O cicheck https://dl.bintray.com/orobardet/gitlab-ci-linter/v2.2.0/gitlab-ci-linter.linux-amd64
+    - cicheck go
