@@ -1,0 +1,13 @@
+image: "rust:latest"
+
+test:
+   script:
+        - rustc --version && cargo --version
+        - cargo test --workspace --verbose
+
+build:
+    script:
+        - cargo build --release
+    artifacts:
+        paths:
+            - target/release/app
