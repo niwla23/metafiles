@@ -1,13 +1,27 @@
+# NOTE: Replace {{name}} with your project name
+
 image: "rust:latest"
 
+stages:
+    - build
+    - test
+    - deploy
+
 test:
+   stage: test
    script:
         - rustc --version && cargo --version
         - cargo test --workspace --verbose
 
-build:
+build:x86_64:
+    stage: build
     script:
         - cargo build --release
+        - strip target/release/{{name}}
     artifacts:
         paths:
-            - target/release/app
+            - target/release/{{name}}
+run:
+    stage: test
+    script:
+        - ./target/release/{{name}}
