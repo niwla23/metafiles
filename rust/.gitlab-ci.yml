@@ -1,6 +1,6 @@
 # NOTE: Replace {{name}} with your project name
 
-image: "rust:latest"
+image: "registry.gitlab.com/niwla23/rust-docker-cargo-plugins:latest"
 
 stages:
     - build
@@ -11,6 +11,7 @@ test:
    stage: test
    script:
         - rustc --version && cargo --version
+        - cargo deb
         - cargo test --workspace --verbose
 
 build:x86_64:
