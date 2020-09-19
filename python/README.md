@@ -17,8 +17,3 @@
 ### Docker-Compose
  * `sudo docker-compose up -d`
 
-## Usage
-```bash
-$ {{title}} [{{param1}}]
-{{output}}
-```
