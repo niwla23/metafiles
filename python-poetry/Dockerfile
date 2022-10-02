@@ -10,4 +10,4 @@ RUN poetry install
 
 COPY . /usr/src/app
 EXPOSE 5000
-CMD ["python", "main.py"]
+CMD ["python", "-u", "main.py"]
